@@ -32,6 +32,17 @@ const hospitalSchema = new mongoose.Schema(
     default: 0
   },
 
+  city: String,
+
+  state: String,
+
+  district: String,
+
+  reviews: {
+    type: Number,
+    default: 0
+  },
+
   location: {
     latitude: {
       type: Number,
@@ -48,6 +59,7 @@ const hospitalSchema = new mongoose.Schema(
   timestamps: true
 }
 );
+
 hospitalSchema.index({
   name: 1
 });

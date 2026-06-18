@@ -10,13 +10,13 @@ const createAppointment = async (req, res) => {
       appointmentDate
     } = req.body;
 
-    const appointment =
-      await Appointment.create({
-        patientId: req.user.userId,
-        doctorId,
-        hospitalId,
-        appointmentDate
-      });
+   const appointment =
+  await Appointment.create({
+    patientId: req.user.userId,
+    doctorId,
+    hospitalId,
+    appointmentDate: appointmentDate || new Date()
+  });
 
     const queueCount =
       await Queue.countDocuments({

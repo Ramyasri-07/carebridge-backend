@@ -64,7 +64,22 @@ const getNearbyHospitals = async (req, res) => {
 
   }
 };
+const createHospital = async (req, res) => {
+  try {
+    const hospital = await Hospital.create(req.body);
+    res.status(201).json({
+      message: "Hospital Created",
+      hospital
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message
+    });
+  }
+};
+
 module.exports = {
   getHospitals,
-  getNearbyHospitals
+  getNearbyHospitals,
+  createHospital
 };

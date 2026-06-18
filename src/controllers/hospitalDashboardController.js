@@ -37,10 +37,15 @@ const getHospitalQueue = async (req, res) => {
     const { hospitalId } = req.params;
 
     const queue =
-      await Queue.find({
-        hospitalId,
-        status: "Waiting"
-      })
+  await Queue.find({
+    hospitalId,
+    status: {
+      $in: [
+        "Waiting",
+        "In Progress"
+      ]
+    }
+  })
       .populate(
         "patientId",
         "name email"
@@ -160,11 +165,14 @@ const getHospitalStats = async (req, res) => {
   try {
 
     const { hospitalId } = req.params;
+    console.log("Stats Hospital ID:", hospitalId);
 
     const totalDoctors =
       await Doctor.countDocuments({
         hospitalId
       });
+
+    console.log("Doctors Count:", totalDoctors);
 
     const totalAppointments =
       await Appointment.countDocuments({

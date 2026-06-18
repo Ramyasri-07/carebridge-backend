@@ -37,8 +37,20 @@ const getDoctors = async (req, res) => {
 
   }
 };
+const getDoctorsByHospital =
+async (req, res) => {
+
+  const doctors =
+    await Doctor.find({
+      hospitalId:
+        req.params.hospitalId
+    });
+
+  res.json(doctors);
+};
 
 module.exports = {
   createDoctor,
-  getDoctors
+  getDoctors,
+  getDoctorsByHospital
 };

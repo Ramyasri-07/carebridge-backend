@@ -2,7 +2,8 @@ const express = require("express");
 
 const {
   createDoctor,
-  getDoctors
+  getDoctors,
+  getDoctorsByHospital
 } = require("../controllers/doctorController");
 
 const router = express.Router();
@@ -10,5 +11,9 @@ const router = express.Router();
 router.post("/", createDoctor);
 
 router.get("/", getDoctors);
+router.get(
+  "/hospital/:hospitalId",
+  getDoctorsByHospital
+);
 
 module.exports = router;
